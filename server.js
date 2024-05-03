@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Control Panel app listening at http://localhost:${port}`);
+    console.log(`SYSWatch is now available at http://localhost:${port}`);
 });
 
 // Helper functions to fetch system performance data
