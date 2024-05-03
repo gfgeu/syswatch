@@ -24,3 +24,7 @@ node server.js
 ```
 
 This will start the SysWatch server, and you can access the dashboard on the URL printed in the Terminal..
+
+## Issues
+
+Please feel free to report issues over at https://github.com/gfgeu/syswatch/issues
