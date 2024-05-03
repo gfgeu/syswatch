@@ -1,6 +1,6 @@
 {
   "name": "syswatch",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Syswatch is a system monitoring tool that provides real-time performance metrics of your system such as CPU usage, memory usage, disk usage, temperature, and more.",
   "main": "server.js",
   "scripts": {
