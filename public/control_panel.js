@@ -13,17 +13,14 @@ async function fetchData() {
         document.getElementById('disk-io').innerText = data.diskIO;
 
         // Update process status (if visible)
-        const processStatusElement = document.getElementById('process-status');
-        if (!processStatusElement.classList.contains('hidden')) {
-            updateProcessStatus(data.processStatus);
-        }
+        updateTopProcesses(data.topProcesses);
     } catch (error) {
         console.error('Error fetching performance data:', error);
     }
 }
 
-// Function to update process status
-function updateProcessStatus(processes) {
+// Function to update top processes
+function updateTopProcesses(topProcesses) {
     const processStatusElement = document.getElementById('process-status');
     if (!processStatusElement) {
         console.error('Process status element not found.');
@@ -31,29 +28,24 @@ function updateProcessStatus(processes) {
     }
     processStatusElement.innerHTML = ''; // Clear previous entries
 
-    if (processes) {
-        // Sort processes based on CPU usage (assuming `pcpu` property is available)
-        processes.sort((a, b) => {
-            // Handle cases where `pcpu` property is undefined
-            const cpuA = a.pcpu || 0;
-            const cpuB = b.pcpu || 0;
-            return cpuB - cpuA;
-        });
+    if (topProcesses && topProcesses.length > 0) {
+        // Calculate total CPU usage
+        const totalCPUUsage = topProcesses.reduce((total, process) => total + process.cpu, 0);
         
         // Display only the top 5 processes
-        processes.slice(0, 5).forEach(process => {
+        topProcesses.slice(0, 5).forEach(process => {
             const name = process.name || 'Unknown';
-            const pcpu = process.pcpu !== undefined ? `${process.pcpu.toFixed(2)}%` : 'Unknown';
+            const cpuPercentage = totalCPUUsage > 0 ? ((process.cpu / totalCPUUsage) * 100).toFixed(2) : 'Unknown';
             const listItem = document.createElement('li');
             listItem.classList.add('py-2', 'flex', 'justify-between');
             listItem.innerHTML = `
                 <span>${name}</span>
-                <span>${pcpu}</span>
+                <span>${cpuPercentage}%</span>
             `;
             processStatusElement.appendChild(listItem);
         });
     } else {
-        console.warn('Process status data is undefined.');
+        console.warn('No top processes available.');
     }
 }
 

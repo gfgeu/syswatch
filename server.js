@@ -85,6 +85,7 @@ async function getTopCpuProcesses() {
         return []; // Return an empty array if an error occurs
     }
 }
+
 // Function to execute system command and retrieve process information
 function getProcessStatus() {
     return new Promise((resolve, reject) => {
@@ -100,24 +101,26 @@ function getProcessStatus() {
                 reject(stderr);
             }
 
-            const processes = stdout.split('\n').slice(1); // Remove header line
-            const processList = processes.map(process => {
-                // Use regex to extract process name, which may contain spaces
-                const nameMatch = process.match(/^[^\s]+(?:\s+[^\s]+)*/);
+            console.log('Raw command output:');
+            console.log(stdout);
+
+            const processes = stdout.split('\n');
+            const processList = processes.filter(process => {
+                return !process.startsWith('=') && !process.trim() === '';
+            }).map(process => {
+                // Use regex to extract process name
+                const nameMatch = process.match(/[^\\]+$/);
                 const name = nameMatch ? nameMatch[0] : 'Unknown';
                 const tokens = process.trim().split(/\s+/);
-                const cpu = parseFloat(tokens[tokens.length - 3]); // Parse CPU usage
-                const memory = tokens[tokens.length - 2];
-                const status = tokens[tokens.length - 1]; // Status is the last token
-
-                return { name, cpu, memory, status };
+                const cpu = tokens[tokens.length - 3]; // CPU usage is located at the second last index
+                return { name, cpu };
             });
 
-            // Sort processes by CPU usage in descending order
-            const sortedProcesses = processList.sort((a, b) => b.cpu - a.cpu);
+            console.log('Processed process list:');
+            console.log(processList);
 
             // Return only the top 5 processes
-            resolve(sortedProcesses.slice(0, 5));
+            resolve(processList.slice(0, 5));
         });
     });
 }
