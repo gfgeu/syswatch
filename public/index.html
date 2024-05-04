@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,67 +10,74 @@
     <!-- Add Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-white">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-8">System Performance</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            <div class="bg-gray-800 rounded shadow p-6 flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">CPU Usage</h2>
-                    <p class="text-gray-300">CPU Usage: <span id="cpu-usage">0%</span></p>
-                </div>
-                <div class="text-yellow-500">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                
-            </div>
-            <div class="bg-gray-800 rounded shadow p-6 flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">Memory Usage</h2>
-                    <p class="text-gray-300">Memory Usage: <span id="memory-usage">0%</span></p>
-                </div>
-                <div class="text-green-500">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-            </div>
-            <div class="bg-gray-800 rounded shadow p-6 flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">Disk Usage</h2>
-                    <p class="text-gray-300">Disk Usage: <span id="disk-usage">0%</span></p>
-                </div>
-                <div class="text-blue-500">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-            </div>
-            <div class="bg-gray-800 rounded shadow p-6 flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">CPU Temperature</h2>
-                    <p class="text-gray-300">Temperature: <span id="cpu-temperature">0°C</span></p>
-                </div>
-                <div class="text-red-500">
-                    <i class="fas fa-thermometer-half"></i>
-                </div>
-            </div>
-            <div class="bg-gray-800 rounded shadow p-6 flex items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">Disk I/O</h2>
-                    <p class="text-gray-300">Disk I/O: <span id="disk-io">0</span></p>
-                </div>
-                <div class="text-indigo-500">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-            </div>
 
-            <div class="bg-gray-800 rounded shadow p-6 process-status-container relative">
-                <h2 class="text-xl font-semibold mb-4">Process Status</h2>
-                <button id="toggle-process-status" class="absolute top-4 right-4 bg-white bg-opacity-50 rounded-md px-2 py-1 text-black font-semibold text-sm">Show Process Status</button>
-                <ul id="process-status" class="divide-y divide-gray-700 hidden">
-                    <!-- Process status items will be added dynamically here -->
-                </ul>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center">System Performance</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- CPU Usage -->
+            <div class="rounded-xl shadow-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-2">CPU Usage</h2>
+                    <p class="text-gray-200">Current Usage: <span id="cpu-usage">0%</span></p>
+                </div>
+                <div class="flex justify-center items-center bg-gradient-to-br from-purple-700 to-indigo-700 px-6 py-4">
+                    <i class="fas fa-chart-line text-4xl"></i>
+                </div>
             </div>
-            
+            <!-- Memory Usage -->
+            <div class="rounded-xl shadow-xl bg-gradient-to-br from-pink-600 to-red-600 text-white">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-2">Memory Usage</h2>
+                    <p class="text-gray-200">Current Usage: <span id="memory-usage">0%</span></p>
+                </div>
+                <div class="flex justify-center items-center bg-gradient-to-br from-pink-700 to-red-700 px-6 py-4">
+                    <i class="fas fa-chart-line text-4xl"></i>
+                </div>
+            </div>
+            <!-- Disk Usage -->
+            <div class="rounded-xl shadow-xl bg-gradient-to-br from-green-600 to-teal-600 text-white">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-2">Disk Usage</h2>
+                    <p class="text-gray-200">Current Usage: <span id="disk-usage">0%</span></p>
+                </div>
+                <div class="flex justify-center items-center bg-gradient-to-br from-green-700 to-teal-700 px-6 py-4">
+                    <i class="fas fa-chart-line text-4xl"></i>
+                </div>
+            </div>
+            <!-- CPU Temperature -->
+            <div class="rounded-xl shadow-xl bg-gradient-to-br from-yellow-500 to-orange-500 text-white">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-2">CPU Temperature</h2>
+                    <p class="text-gray-200">Current Temperature: <span id="cpu-temperature">0°C</span></p>
+                </div>
+                <div class="flex justify-center items-center bg-gradient-to-br from-yellow-600 to-orange-600 px-6 py-4">
+                    <i class="fas fa-thermometer-half text-4xl"></i>
+                </div>
+            </div>
+            <!-- Disk I/O -->
+            <div class="rounded-xl shadow-xl bg-gradient-to-br from-blue-500 to-cyan-500 text-white">
+                <div class="p-6">
+                    <h2 class="text-xl font-semibold mb-2">Disk I/O</h2>
+                    <p class="text-gray-200">Current I/O: <span id="disk-io">0</span></p>
+                </div>
+                <div class="flex justify-center items-center bg-gradient-to-br from-blue-600 to-cyan-600 px-6 py-4">
+                    <i class="fas fa-chart-line text-4xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-semibold mb-4 text-white">Process Status</h2>
+                <button id="toggle-process-status" class="bg-gray-700 hover:bg-gray-600 text-white rounded-md px-4 py-2 font-semibold">Show Process Status</button>
+                <div id="process-status" class="divide-y divide-gray-700 mt-4 hidden">
+                    <!-- Process status items will be added dynamically here -->
+                </div>
+            </div>
         </div>
     </div>
     <script src="control_panel.js"></script>
 </body>
+
 </html>
