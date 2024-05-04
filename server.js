@@ -101,9 +101,6 @@ function getProcessStatus() {
                 reject(stderr);
             }
 
-            console.log('Raw command output:');
-            console.log(stdout);
-
             const processes = stdout.split('\n');
             const processList = processes.filter(process => {
                 return !process.startsWith('=') && !process.trim() === '';
@@ -115,9 +112,6 @@ function getProcessStatus() {
                 const cpu = tokens[tokens.length - 3]; // CPU usage is located at the second last index
                 return { name, cpu };
             });
-
-            console.log('Processed process list:');
-            console.log(processList);
 
             // Return only the top 5 processes
             resolve(processList.slice(0, 5));
