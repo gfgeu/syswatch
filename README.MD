@@ -23,7 +23,7 @@ cd node_modules/syswatch/
 node server.js
 ```
 
-This will start the SysWatch server, and you can access the dashboard on the URL printed in the Terminal..
+This will start the SysWatch server, and you can access the dashboard on the URL printed in the Terminal.
 
 ## Issues
 
