@@ -6,6 +6,9 @@
   "keywords": [],
   "author": "gfgeu",
   "license": "ISC",
+  "bin": {
+    "syswatch": "./server.js"
+  },
   "dependencies": {
     "express": "^4.19.2",
     "os-utils": "^0.0.14",

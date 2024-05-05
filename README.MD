@@ -14,13 +14,12 @@ This will install SysWatch as a local dependency in your project.
 ## Usage
 
 
-### Directly from node_modules
+### With `npx`
 
-Alternatively, you can navigate to the `node_modules/syswatch` directory and start SysWatch by running:
+Start SysWatch by running:
 
 ```bash
-cd node_modules/syswatch/
-node server.js
+npx syswatch
 ```
 
 This will start the SysWatch server, and you can access the dashboard on the URL printed in the Terminal.
